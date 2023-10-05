@@ -1,0 +1,19 @@
+{
+    "name": "edsontolazzi/business-intelligence",
+    "type": "module",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Edson",
+            "email": "edson.tolazzi@universo.univates.br"
+        }
+    ],
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {
+            "Tolazzi\\BusinessIntelligence\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
