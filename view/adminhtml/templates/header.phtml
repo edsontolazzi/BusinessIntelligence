@@ -1,0 +1,31 @@
+<div class="filter">
+    <form action="">
+        <div class="date from">
+            <label for="from"><?= __('From') ?></label>
+            <input type="date" name="from" id="from" value="<?= date('Y-m-d', strtotime(date('Y-m-1'))); ?>">
+        </div>
+
+        <div class="date to">
+            <label for="to"><?= __('To') ?></label>
+            <input type="date" name="to" id="to" value="<?= date('Y-m-d') ?>">
+        </div>
+
+        <div class="action">
+            <label for=""></label>
+            <button id="pesquisar"><?= __('Search') ?></button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const stringUrl = window.location.href;
+    const url = new URL(stringUrl);
+
+    let from = url.searchParams.get('from');
+    let to = url.searchParams.get('to');
+
+    if (from != null && to != null) {
+        window.document.getElementById('from').value = from;
+        window.document.getElementById('to').value = to;
+    }
+</script>

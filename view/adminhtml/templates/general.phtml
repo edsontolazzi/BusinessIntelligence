@@ -1,0 +1,208 @@
+<?php
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+
+use Magento\Framework\View\Element\Template;
+use Tolazzi\BusinessIntelligence\ViewModel\BiGeneralDataProvider;
+
+/** @var Template $block */
+/** @var BiGeneralDataProvider $biGeneralDataProvider */
+
+$biGeneralDataProvider = $block->getData('bi_general_data_provider');
+$dataGraph = $biGeneralDataProvider->getData();
+$isModuleEnabled = $biGeneralDataProvider->isModuleEnabled();
+$isKPIEnabled = $biGeneralDataProvider->isGeneralKPIEnabled();
+$kpiConfigs = $biGeneralDataProvider->getKPIConfigs();
+?>
+<?php if ($isModuleEnabled && $isKPIEnabled): ?>
+    <div class="general">
+        <div class="chart-content">
+            <?php if (in_array('orders_today', $kpiConfigs) || in_array('new_customers_today', $kpiConfigs) || in_array('abandoned_carts', $kpiConfigs)): ?>
+                <div class="graph-box">
+                    <?php if (in_array('orders_today', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Indicates how many orders were placed today. Essential for monitoring daily e-commerce activity.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['total_orders'] ?></span>
+                                    <span class="bold number currency-value"
+                                          data-value="<?= $dataGraph['total_value'] ?>"></span>
+                                    <p class="info-title"><?= __('Orders Today') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('new_customers_today', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Shows how many new customers registered today. Useful for assessing customer base growth.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['new_customers'] ?></span>
+                                    <p class="info-title"><?= __('New Customers Today') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('abandoned_carts', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Number of carts that were created but did not turn into orders. Important for understanding possible hurdles in the purchasing process.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['abandoned_carts'] ?></span>
+                                    <p class="info-title"><?= __('Abandoned Carts') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('last_orders', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Lists the most recent orders. Helps to monitor sales in real-time.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Last Orders') ?></p>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th><?= __('Increment ID') ?></th>
+                            <th><?= __('Order Value') ?></th>
+                            <th><?= __('Customer ID') ?></th>
+                            <th><?= __('Customer Name') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dataGraph['last_orders'] as $row): ?>
+                            <tr>
+                                <td><?= $row['increment_id'] ?></td>
+                                <td class="currency-value"
+                                    data-value="<?= $row['order_value'] ?>"></td>
+                                <td><?= $row['customer_id'] ?></td>
+                                <td><?= $row['firstname'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('last_customers', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Shows the most recent registrations. Useful for tracking the expansion of the customer base.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Last Customers') ?></p>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th><?= __('Customer Name') ?></th>
+                            <th><?= __('Customer ID') ?></th>
+                            <th><?= __('E-mail') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dataGraph['last_customers'] as $row): ?>
+                            <tr>
+                                <td><?= $row['firstname'] ?></td>
+                                <td><?= $row['customer_id'] ?></td>
+                                <td><?= $row['email'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('top_biggest_orders', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Details the highest value orders and who the customers were. Aids in identifying big purchasers.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Top Biggest Orders') ?></p>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th><?= __('Order ID') ?></th>
+                            <th><?= __('Increment ID') ?></th>
+                            <th><?= __('Order Value') ?></th>
+                            <th><?= __('Customer ID') ?></th>
+                            <th><?= __('Customer Name') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dataGraph['top_orders'] as $row): ?>
+                            <tr>
+                                <td><?= $row['order_id'] ?></td>
+                                <td><?= $row['order_number'] ?></td>
+                                <td class="currency-value"
+                                    data-value="<?= $row['order_value'] ?>"></td>
+                                <td><?= $row['customer_id'] ?></td>
+                                <td><?= $row['firstname'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('top_buyers', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Lists the customers who purchased the most in the e-commerce. Important for recognizing and retaining top customers.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Top Buyers') ?></p>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th><?= __('Customer ID') ?></th>
+                            <th><?= __('Customer Name') ?></th>
+                            <th><?= __('Total Spent') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dataGraph['top_buyers'] as $row): ?>
+                            <tr>
+                                <td><?= $row['customer_id'] ?></td>
+                                <td><?= $row['firstname'] ?></td>
+                                <td class="currency-value"
+                                    data-value="<?= $row['total_spent'] ?>"></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('top_search_terms', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Shows which terms were searched for the most on the site. Useful for understanding what customers are looking for.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Top Search Terms') ?></p>
+                    </div>
+                    <canvas data-mage-init='{"graph-bar": {"message": <?= $dataGraph['top_search_terms'] ?>}}'></canvas>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Tolazzi_BusinessIntelligence::js/currency/currency.js"/>
+        <css src="Tolazzi_BusinessIntelligence::css/dashboard.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   template="Tolazzi_BusinessIntelligence::general.phtml">
+                <arguments>
+                    <argument name="bi_general_data_provider" xsi:type="object">
+                        Tolazzi\BusinessIntelligence\ViewModel\BiGeneralDataProvider
+                    </argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Template"
+                   template="Tolazzi_BusinessIntelligence::header.phtml"/>
+
+            <block class="Magento\Framework\View\Element\Template"
+                   template="Tolazzi_BusinessIntelligence::sales.phtml">
+                <arguments>
+                    <argument name="bi_sales_data_provider" xsi:type="object">
+                        Tolazzi\BusinessIntelligence\ViewModel\BiSalesDataProvider
+                    </argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Template"
+                   template="Tolazzi_BusinessIntelligence::products.phtml">
+                <arguments>
+                    <argument name="bi_products_data_provider" xsi:type="object">
+                        Tolazzi\BusinessIntelligence\ViewModel\BiProductsDataProvider
+                    </argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Framework\View\Element\Template"
+                   template="Tolazzi_BusinessIntelligence::customers.phtml">
+                <arguments>
+                    <argument name="bi_customers_data_provider" xsi:type="object">
+                        Tolazzi\BusinessIntelligence\ViewModel\BiCustomersDataProvider
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

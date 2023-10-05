@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="tolazzi" translate="label" sortOrder="10">
+            <label>Tolazzi</label>
+        </tab>
+
+        <section id="business_intelligence" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>settings-separator</class>
+            <label>Business Intelligence</label>
+            <tab>tolazzi</tab>
+            <resource>Tolazzi_BusinessIntelligence::manage</resource>
+
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="general_section" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Section</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="abandoned_cart_time" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Abandoned Cart</label>
+                    <validate>required-entry no-whitespace integer</validate>
+                    <comment>How many hours without an update is considered an abandoned cart?</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="last_informations" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Last Informations</label>
+                    <validate>required-entry no-whitespace integer</validate>
+                    <comment>Number of rows in tables about latest information.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="top_informations" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Top Informations</label>
+                    <validate>required-entry no-whitespace integer</validate>
+                    <comment>Number of rows in tables about top information.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="kpi" translate="label" type="multiselect" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Key Performance Indicators</label>
+                    <source_model>Tolazzi\BusinessIntelligence\Model\Source\GeneralKPIs</source_model>
+                    <comment>The options selected here will be showned in the dashboard.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="sales_section" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Sales Section</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="kpi" translate="label" type="multiselect" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Key Performance Indicators</label>
+                    <source_model>Tolazzi\BusinessIntelligence\Model\Source\SalesKPIs</source_model>
+                    <comment>The options selected here will be showned in the dashboard.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="product_section" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Products Section</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="top_informations" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Top Informations</label>
+                    <validate>required-entry no-whitespace integer</validate>
+                    <comment>Number of rows in tables about top information.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="kpi" translate="label" type="multiselect" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Key Performance Indicators</label>
+                    <source_model>Tolazzi\BusinessIntelligence\Model\Source\ProductKPIs</source_model>
+                    <comment>The options selected here will be showned in the dashboard.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="customer_section" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Customer Section</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="kpi" translate="label" type="multiselect" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Key Performance Indicators</label>
+                    <source_model>Tolazzi\BusinessIntelligence\Model\Source\CustomerKPIs</source_model>
+                    <comment>The options selected here will be showned in the dashboard.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

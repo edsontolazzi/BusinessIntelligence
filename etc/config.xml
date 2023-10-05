@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <business_intelligence>
+            <general>
+                <enabled>0</enabled>
+            </general>
+
+            <general_section>
+                <enabled>0</enabled>
+                <abandoned_cart_time>24</abandoned_cart_time>
+                <last_informations>6</last_informations>
+                <top_informations>5</top_informations>
+                <kpi>orders_today,new_customers_today,abandoned_carts,last_orders,last_customers,top_biggest_orders,top_buyers,top_search_terms</kpi>
+            </general_section>
+
+            <sales_section>
+                <enabled>0</enabled>
+                <kpi>total_invoiced,average_invoiced_ticket,total_ordered,average_ordered_ticket,invoiced_orders,orders,invoices_not_paid,number_of_order_by_state,value_of_order_by_state,number_of_order_by_month,value_of_order_by_month,number_of_order_by_year,value_of_order_by_year</kpi>
+            </sales_section>
+
+            <product_section>
+                <enabled>0</enabled>
+                <top_informations>6</top_informations>
+                <kpi>top_selling_products_qty,top_selling_products_value</kpi>
+            </product_section>
+
+            <customer_section>
+                <enabled>0</enabled>
+                <kpi>new_customers,total_customers,average_spent,return_to_buy,average_orders,single_accesses</kpi>
+            </customer_section>
+        </business_intelligence>
+    </default>
+</config>

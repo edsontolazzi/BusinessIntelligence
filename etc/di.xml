@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Tolazzi\BusinessIntelligence\Model\Source\GeneralKPIs">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="orders_today" xsi:type="string">Orders Today</item>
+                <item name="new_customers_today" xsi:type="string">New Customers Today</item>
+                <item name="abandoned_carts" xsi:type="string">Abandoned Carts</item>
+                <item name="last_orders" xsi:type="string">Last Orders</item>
+                <item name="last_customers" xsi:type="string">Last Customers</item>
+                <item name="top_biggest_orders" xsi:type="string">Top Biggest Orders</item>
+                <item name="top_buyers" xsi:type="string">Top Buyers</item>
+                <item name="top_search_terms" xsi:type="string">Top Search Terms</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Tolazzi\BusinessIntelligence\Model\Source\SalesKPIs">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="total_invoiced" xsi:type="string">Total Invoiced</item>
+                <item name="average_invoiced_ticket" xsi:type="string">Average Invoiced Ticket</item>
+                <item name="total_ordered" xsi:type="string">Total Ordered</item>
+                <item name="average_ordered_ticket" xsi:type="string">Average Ordered Ticket</item>
+                <item name="invoiced_orders" xsi:type="string">Invoiced Orders</item>
+                <item name="orders" xsi:type="string">Orders</item>
+                <item name="invoices_not_paid" xsi:type="string">Invoices Not Paid</item>
+                <item name="number_of_order_by_state" xsi:type="string">Number Of Order By State</item>
+                <item name="value_of_order_by_state" xsi:type="string">Value Of Order By State</item>
+                <item name="number_of_order_by_month" xsi:type="string">Number Of Order By Month</item>
+                <item name="value_of_order_by_month" xsi:type="string">Value Of Order By Month</item>
+                <item name="number_of_order_by_year" xsi:type="string">Number Of Order By Year</item>
+                <item name="value_of_order_by_year" xsi:type="string">Value Of Order By Year</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Tolazzi\BusinessIntelligence\Model\Source\CustomerKPIs">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="new_customers" xsi:type="string">New customers</item>
+                <item name="total_customers" xsi:type="string">Total Customers</item>
+                <item name="average_spent" xsi:type="string">Average Spent</item>
+                <item name="return_to_buy" xsi:type="string">Return To Buy</item>
+                <item name="average_orders" xsi:type="string">Average Orders</item>
+                <item name="single_accesses" xsi:type="string">Single accesses</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Tolazzi\BusinessIntelligence\Model\Source\ProductKPIs">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="top_selling_products_qty" xsi:type="string">Top Selling Products (Qty)</item>
+                <item name="top_selling_products_value" xsi:type="string">Top Selling Products (Value)</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

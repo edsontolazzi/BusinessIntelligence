@@ -1,0 +1,168 @@
+.filter{
+    margin-top: 20px;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 15px;
+}
+
+.filter form {
+    display: flex;
+    align-items: center;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    font-size: 14px;
+}
+
+.date.from {
+    margin-right: 4rem;
+}
+
+.date label {
+    margin-right: 1rem;
+}
+
+.action {
+    margin-left: auto;
+}
+
+.action button {
+    padding: 0 22px;
+    background-color: #1E5066;
+    height: 46px;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+.title {
+    padding-top: 20px;
+}
+
+.chart-content {
+    border: 3px solid #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.graph {
+    margin: 0;
+    width: 50%;
+    padding: 20px;
+}
+
+.graph-box {
+    margin: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-box {
+    margin-inline: 40px;
+}
+
+.info-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #1E5066;
+}
+
+.rectangle {
+    width: 250px;
+    height: 140px;
+    border-radius: 10px;
+    border: 1px solid #1E5066;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.number {
+    font-size: 26px;
+    color: #1E5066;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 22px 0;
+    font-size: 16px;
+    text-align: left;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.data-table thead tr {
+    background-color: #1E5066;
+    color: #ffffff;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 10px 13px;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.data-table tbody tr:last-of-type {
+    border-bottom: 2px solid #1E5066;
+}
+
+.data-table tbody tr.active-row {
+    font-weight: bold;
+    color: #1E5066;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f3f3f3;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 50%;
+    margin-left: -125px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}

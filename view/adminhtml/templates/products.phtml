@@ -1,0 +1,86 @@
+<?php
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+
+use Magento\Framework\View\Element\Template;
+use Tolazzi\BusinessIntelligence\ViewModel\BiProductsDataProvider;
+
+/** @var Template $block */
+/** @var BiProductsDataProvider $biProductsDataProvider */
+
+$biProductsDataProvider = $block->getData('bi_products_data_provider');
+$dataGraph = $biProductsDataProvider->getData();
+$isModuleEnabled = $biProductsDataProvider->isModuleEnabled();
+$isKPIEnabled = $biProductsDataProvider->isProductKPIEnabled();
+$kpiConfigs = $biProductsDataProvider->getKPIConfigs();
+?>
+<?php if ($isModuleEnabled && $isKPIEnabled): ?>
+    <div class="products">
+        <div class="title">
+            <h1><?= __('Products') ?></h1>
+        </div>
+
+        <div class="chart-content">
+            <?php if (in_array('top_selling_products_qty', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Lists the best-selling products in terms of quantity. Useful for understanding which products are most popular.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Top Selling Products (Qty)') ?></p>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th><?= __('Product ID') ?></th>
+                            <th><?= __('SKU') ?></th>
+                            <th><?= __('Quantity') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dataGraph['top_selling_products_qty'] as $row): ?>
+                            <tr>
+                                <td><?= $row['product_id'] ?></td>
+                                <td><?= $row['product_sku'] ?></td>
+                                <td><?= (int) $row['total_qty_ordered'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('top_selling_products_value', $kpiConfigs)): ?>
+                <div class="graph">
+                    <div class="tooltip-container">
+                        <span class="tooltip-text">
+                            <?= __('Lists the best-selling products in terms of value. Helps to identify which products generate more revenue.') ?>
+                        </span>
+                        <p class="info-title"><?= __('Top Selling Products (Value)') ?></p>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th><?= __('Product ID') ?></th>
+                            <th><?= __('SKU') ?></th>
+                            <th><?= __('Value') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($dataGraph['top_selling_products_value'] as $row): ?>
+                            <tr>
+                                <td><?= $row['product_id'] ?></td>
+                                <td><?= $row['product_sku'] ?></td>
+                                <td class="currency-value"
+                                    data-value="<?= $row['total_value'] ?>"></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>

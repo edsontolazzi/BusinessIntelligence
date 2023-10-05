@@ -1,0 +1,120 @@
+<?php
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+
+use Magento\Framework\View\Element\Template;
+use Tolazzi\BusinessIntelligence\ViewModel\BiCustomersDataProvider;
+
+/** @var Template $block */
+/** @var BiCustomersDataProvider $biCustomersDataProvider */
+
+$biCustomersDataProvider = $block->getData('bi_customers_data_provider');
+$dataGraph = $biCustomersDataProvider->getData();
+$isModuleEnabled = $biCustomersDataProvider->isModuleEnabled();
+$isKPIEnabled = $biCustomersDataProvider->isCustomerKPIEnabled();
+$kpiConfigs = $biCustomersDataProvider->getKPIConfigs();
+?>
+<?php if ($isModuleEnabled && $isKPIEnabled): ?>
+    <div class="customers">
+        <div class="title">
+            <h1><?= __('Customers') ?></h1>
+        </div>
+
+        <div class="chart-content">
+            <?php if (in_array('new_customers', $kpiConfigs) || in_array('total_customers', $kpiConfigs) || in_array('average_spent', $kpiConfigs) || in_array('return_to_buy', $kpiConfigs)): ?>
+                <div class="graph-box">
+                    <?php if (in_array('new_customers', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Indicates how many new customers registered. Fundamental for evaluating the attraction of new customers.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['new_customers'] ?></span>
+                                    <p class="info-title"><?= __('New customers') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('total_customers', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Total number of registered customers. Crucial indicator for evaluating the size of the customer base.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['total_customers'] ?></span>
+                                    <p class="info-title"><?= __('Total Customers') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('average_spent', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Average amount a customer spends. Helps to understand customer buying behavior.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                <span class="bold number currency-value"
+                                      data-value="<?= $dataGraph['average_spent'] ?>"></span>
+                                    <p class="info-title"><?= __('Average Spent') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('return_to_buy', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Percentage of customers who made more than one purchase. Important for evaluating customer retention.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['percentage_return_buy'] . " %" ?></span>
+                                    <p class="info-title"><?= __('Return To Buy') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('average_orders', $kpiConfigs) || in_array('single_accesses', $kpiConfigs)): ?>
+                <div class="graph-box">
+                    <?php if (in_array('average_orders', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Average number of orders made by a customer. Indicates customers purchasing frequency.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['average_orders'] ?></span>
+                                    <p class="info-title"><?= __('Average Orders') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('single_accesses', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Total number of unique logins. Helps to measure user activity and engagement on the platform.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['single_accesses'] ?></span>
+                                    <p class="info-title"><?= __('Single accesses') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>

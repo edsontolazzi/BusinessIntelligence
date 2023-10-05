@@ -1,0 +1,211 @@
+<?php
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+
+use Magento\Framework\View\Element\Template;
+use Tolazzi\BusinessIntelligence\ViewModel\BiSalesDataProvider;
+
+/** @var Template $block */
+/** @var BiSalesDataProvider $biSalesDataProvider */
+
+$biSalesDataProvider = $block->getData('bi_sales_data_provider');
+$dataGraph = $biSalesDataProvider->getData();
+$isModuleEnabled = $biSalesDataProvider->isModuleEnabled();
+$isKPIEnabled = $biSalesDataProvider->isSalesKPIEnabled();
+$kpiConfigs = $biSalesDataProvider->getKPIConfigs();
+?>
+<?php if ($isModuleEnabled && $isKPIEnabled): ?>
+    <div class="sales">
+        <div class="title">
+            <h1><?= __('Sales') ?></h1>
+        </div>
+
+        <div class="chart-content">
+            <?php if (in_array('total_invoiced', $kpiConfigs) || in_array('average_invoiced_ticket', $kpiConfigs) || in_array('total_ordered', $kpiConfigs) || in_array('average_ordered_ticket', $kpiConfigs)): ?>
+                <div class="graph-box">
+                    <?php if (in_array('total_invoiced', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Total sum of all invoiced amounts. Crucial indicator for assessing financial performance.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                <span class="bold number currency-value"
+                                      data-value="<?= $dataGraph['total_value_invoiced'] ?>"></span>
+                                    <p class="info-title"><?= __('Total Invoiced') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('average_invoiced_ticket', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Average invoiced amount per order. Important for understanding the average amount customers spend.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                <span class="bold number currency-value"
+                                      data-value="<?= $dataGraph['average_ticket'] ?>"></span>
+                                    <p class="info-title"><?= __('Average Invoiced Ticket') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('total_ordered', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Total sum of order values. Important indicator for tracking sales performance.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                <span class="bold number currency-value"
+                                      data-value="<?= $dataGraph['total_value_ordered'] ?>"></span>
+                                    <p class="info-title"><?= __('Total Ordered') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('average_ordered_ticket', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Average amount per order. Useful for understanding the average amount customers are willing to spend.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                <span class="bold number currency-value"
+                                      data-value="<?= $dataGraph['ticket_total_ordered'] ?>"></span>
+                                    <p class="info-title"><?= __('Average Ordered Ticket') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('invoiced_orders', $kpiConfigs) || in_array('orders', $kpiConfigs) || in_array('invoices_not_paid', $kpiConfigs)): ?>
+                <div class="graph-box">
+                    <?php if (in_array('average_ordered_ticket', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Total number of orders that were invoiced. Important for tracking the efficiency of the invoicing process.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['number_orders_invoiced'] ?></span>
+                                    <p class="info-title"><?= __('Invoiced Orders') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('orders', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Total number of orders made. Indicates purchasing activity on the e-commerce.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['number_orders_general'] ?></span>
+                                    <p class="info-title"><?= __('Orders') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (in_array('invoices_not_paid', $kpiConfigs)): ?>
+                        <div class="tooltip-container">
+                            <span class="tooltip-text">
+                                <?= __('Indicates invoiced orders that have not yet been paid. Useful for receivables management.') ?>
+                            </span>
+                            <div class="info-box">
+                                <div class="rectangle">
+                                    <span class="bold number"><?= $dataGraph['number_orders_not_paid'] ?></span>
+                                    <span class="bold number currency-value"
+                                          data-value="<?= $dataGraph['value_orders_not_paid'] ?>"></span>
+                                    <p class="info-title"><?= __('Invoices Not Paid') ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (in_array('number_of_order_by_state', $kpiConfigs)): ?>
+            <div class="graph">
+                <div class="tooltip-container">
+                    <span class="tooltip-text">
+                        <?= __('Displays the number of orders by state. Helps to understand the geographical distribution of sales.') ?>
+                    </span>
+                    <p class="info-title"><?= __('Number Of Order By State') ?></p>
+                </div>
+                <canvas data-mage-init='{"graph-bar": {"message": <?= $dataGraph['order_by_state_number'] ?>}}'></canvas>
+            </div>
+            <?php endif; ?>
+
+            <?php if (in_array('value_of_order_by_state', $kpiConfigs)): ?>
+            <div class="graph">
+                <div class="tooltip-container">
+                    <span class="tooltip-text">
+                        <?= __('Displays the total value of invoiced orders by state. Useful for regional sales analysis.') ?>
+                    </span>
+                    <p class="info-title"><?= __('Value Of Order By State') ?></p>
+                </div>
+                <canvas data-mage-init='{"graph-line": {"message": <?= $dataGraph['order_by_state_value'] ?>}}'></canvas>
+            </div>
+            <?php endif; ?>
+
+            <?php if (in_array('number_of_order_by_month', $kpiConfigs)): ?>
+            <div class="graph">
+                <div class="tooltip-container">
+                    <span class="tooltip-text">
+                        <?= __('Shows the number of orders per month. Helps to identify trends and seasonality.') ?>
+                    </span>
+                    <p class="info-title"><?= __('Number Of Order By Month') ?></p>
+                </div>
+                <canvas data-mage-init='{"graph-bar": {"message": <?= $dataGraph['order_by_month_number'] ?>}}'></canvas>
+            </div>
+            <?php endif; ?>
+
+            <?php if (in_array('value_of_order_by_month', $kpiConfigs)): ?>
+            <div class="graph">
+                <div class="tooltip-container">
+                    <span class="tooltip-text">
+                        <?= __('Displays the total value of invoiced orders per month. Useful for monthly sales analysis.') ?>
+                    </span>
+                    <p class="info-title"><?= __('Value Of Order By Month') ?></p>
+                </div>
+                <canvas data-mage-init='{"graph-line": {"message": <?= $dataGraph['order_by_month_value'] ?>}}'></canvas>
+            </div>
+            <?php endif; ?>
+
+            <?php if (in_array('number_of_order_by_year', $kpiConfigs)): ?>
+            <div class="graph">
+                <div class="tooltip-container">
+                    <span class="tooltip-text">
+                        <?= __('Shows the number of orders per year. Allows for the assessment of annual sales evolution.') ?>
+                    </span>
+                    <p class="info-title"><?= __('Number Of Order By Year') ?></p>
+                </div>
+                <canvas data-mage-init='{"graph-bar": {"message": <?= $dataGraph['order_by_year_number'] ?>}}'></canvas>
+            </div>
+            <?php endif; ?>
+
+            <?php if (in_array('value_of_order_by_year', $kpiConfigs)): ?>
+            <div class="graph">
+                <div class="tooltip-container">
+                    <span class="tooltip-text">
+                        <?= __('Displays the total value of invoiced orders per year. Important for annual financial performance analysis.') ?>
+                    </span>
+                    <p class="info-title"><?= __('Value Of Order By Year') ?></p>
+                </div>
+                <canvas data-mage-init='{"graph-line": {"message": <?= $dataGraph['order_by_year_value'] ?>}}'></canvas>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php endif; ?>

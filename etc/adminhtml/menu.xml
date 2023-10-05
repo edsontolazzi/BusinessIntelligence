@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Edson Tolazzi <edson.tolazzi@universo.univates.br>
+ * @copyright   2023 Edson Tolazzi
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Tolazzi_BusinessIntelligence::tolazzi"
+             title="Business Intelligence"
+             module="Tolazzi_BusinessIntelligence"
+             sortOrder="10"
+             resource="Tolazzi_BusinessIntelligence::tolazzi"
+             dependsOnConfig="business_intelligence/general/enabled" />
+
+        <add id="Tolazzi_BusinessIntelligence::bi"
+             title="Dashboard"
+             module="Tolazzi_BusinessIntelligence"
+             sortOrder="10"
+             action="bi/index/index"
+             resource="Tolazzi_BusinessIntelligence::tolazzi"
+             parent="Tolazzi_BusinessIntelligence::tolazzi"/>
+    </menu>
+</config>
