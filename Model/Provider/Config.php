@@ -47,7 +47,7 @@ class Config
      *
      * @return mixed
      */
-    protected function getValue(string $field, mixed $storeId = null): mixed
+    protected function getValue(string $field, $storeId = null)
     {
         return $this->scopeConfig->getValue(
             static::BASE_PATH . '/' . $field,
