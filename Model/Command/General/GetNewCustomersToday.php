@@ -14,11 +14,6 @@ use Tolazzi\BusinessIntelligence\Model\DateUtil;
 
 class GetNewCustomersToday
 {
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-    /** @var DateUtil */
-    private DateUtil $dateUtil;
-
     /**
      * GetNewCustomersToday constructor.
      *
@@ -26,11 +21,9 @@ class GetNewCustomersToday
      * @param DateUtil $dateUtil
      */
     public function __construct(
-        ResourceConnection $resourceConnection,
-        DateUtil $dateUtil
+        private readonly ResourceConnection $resourceConnection,
+        private readonly DateUtil $dateUtil
     ) {
-        $this->dateUtil = $dateUtil;
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

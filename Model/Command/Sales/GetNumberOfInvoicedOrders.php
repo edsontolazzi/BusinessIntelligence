@@ -12,18 +12,14 @@ use Magento\Framework\App\ResourceConnection;
 
 class GetNumberOfInvoicedOrders
 {
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-
     /**
      * GetNumberOfInvoicedOrders constructor.
      *
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

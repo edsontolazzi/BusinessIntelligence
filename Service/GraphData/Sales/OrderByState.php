@@ -12,18 +12,14 @@ use Tolazzi\BusinessIntelligence\Model\Command\Sales\GetOrderByState;
 
 class OrderByState
 {
-    /** @var GetOrderByState */
-    private GetOrderByState $getOrderByState;
-
     /**
      * OrderByState constructor.
      *
      * @param GetOrderByState $getOrderByState
      */
     public function __construct(
-        GetOrderByState $getOrderByState
+        private readonly GetOrderByState $getOrderByState
     ) {
-        $this->getOrderByState = $getOrderByState;
     }
 
     /**

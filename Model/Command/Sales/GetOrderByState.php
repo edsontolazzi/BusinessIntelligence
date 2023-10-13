@@ -16,18 +16,14 @@ class GetOrderByState
     public const SALES_NUMBER_COLUMN = 'sales_number';
     public const SALES_VALUE_COLUMN = 'sales_value';
 
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-
     /**
      * GetOrderByState constructor.
      *
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

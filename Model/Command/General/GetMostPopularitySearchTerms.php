@@ -15,18 +15,14 @@ class GetMostPopularitySearchTerms
     public const QUERY_TEXT_COLUMN = 'query_text';
     public const POPULARITY = 'popularity';
 
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-
     /**
      * GetMostPopularitySearchTerms constructor.
      *
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

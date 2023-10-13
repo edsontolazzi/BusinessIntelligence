@@ -16,24 +16,19 @@ use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 
 class DateUtil
 {
-    /** @var TimezoneInterface */
-    private TimezoneInterface $timezone;
-    /** @var StoreManagerInterface */
-    private StoreManagerInterface $storeManager;
-
     /**
      * DateUtil constructor.
      *
      * @param TimezoneInterface $timezone
      * @param StoreManagerInterface $storeManager
      */
+    // @codingStandardsIgnoreStart
     public function __construct(
-        TimezoneInterface $timezone,
-        StoreManagerInterface $storeManager
+        private readonly TimezoneInterface $timezone,
+        private readonly StoreManagerInterface $storeManager
     ) {
-        $this->storeManager = $storeManager;
-        $this->timezone = $timezone;
     }
+    // @codingStandardsIgnoreEnd
 
     /**
      * AddDays method

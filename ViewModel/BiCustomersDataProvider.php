@@ -20,23 +20,6 @@ use Tolazzi\BusinessIntelligence\Model\Provider\Config;
 
 class BiCustomersDataProvider implements ArgumentInterface
 {
-    /** @var GetDateParam */
-    private GetDateParam $getDateParam;
-    /** @var GetNewCustomers */
-    private GetNewCustomers $getNewCustomers;
-    /** @var GetAverageSpentByCustomers */
-    private GetAverageSpentByCustomers $getAverageSpentByCustomers;
-    /** @var GetAverageOrdersByCustomers */
-    private GetAverageOrdersByCustomers $getAverageOrdersByCustomers;
-    /** @var GetTotalCustomers */
-    private GetTotalCustomers $getTotalCustomers;
-    /** @var GetPercentageThatReturnToBuy */
-    private GetPercentageThatReturnToBuy $getPercentageThatReturnToBuy;
-    /** @var GetUniqueSessionNumber */
-    private GetUniqueSessionNumber $getUniqueSessionNumber;
-    /** @var Config */
-    private Config $config;
-
     /**
      * BiCustomersDataProvider constructor.
      *
@@ -50,23 +33,15 @@ class BiCustomersDataProvider implements ArgumentInterface
      * @param Config $config
      */
     public function __construct(
-        GetDateParam $getDateParam,
-        GetTotalCustomers $getTotalCustomers,
-        GetNewCustomers $getNewCustomers,
-        GetAverageSpentByCustomers $getAverageSpentByCustomers,
-        GetAverageOrdersByCustomers $getAverageOrdersByCustomers,
-        GetPercentageThatReturnToBuy $getPercentageThatReturnToBuy,
-        GetUniqueSessionNumber $getUniqueSessionNumber,
-        Config $config
+        private readonly GetDateParam $getDateParam,
+        private readonly GetTotalCustomers $getTotalCustomers,
+        private readonly GetNewCustomers $getNewCustomers,
+        private readonly GetAverageSpentByCustomers $getAverageSpentByCustomers,
+        private readonly GetAverageOrdersByCustomers $getAverageOrdersByCustomers,
+        private readonly GetPercentageThatReturnToBuy $getPercentageThatReturnToBuy,
+        private readonly GetUniqueSessionNumber $getUniqueSessionNumber,
+        private readonly Config $config
     ) {
-        $this->config = $config;
-        $this->getUniqueSessionNumber = $getUniqueSessionNumber;
-        $this->getPercentageThatReturnToBuy = $getPercentageThatReturnToBuy;
-        $this->getTotalCustomers = $getTotalCustomers;
-        $this->getAverageOrdersByCustomers = $getAverageOrdersByCustomers;
-        $this->getAverageSpentByCustomers = $getAverageSpentByCustomers;
-        $this->getNewCustomers = $getNewCustomers;
-        $this->getDateParam = $getDateParam;
     }
 
     /**

@@ -12,18 +12,14 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class CustomerKPIs implements OptionSourceInterface
 {
-    /** @var array */
-    private array $options;
-
     /**
      * CustomerKPIs constructor.
      *
      * @param array $options
      */
     public function __construct(
-        array $options
+        private readonly array $options
     ) {
-        $this->options = $options;
     }
 
     /**
