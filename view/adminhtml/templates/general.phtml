@@ -23,7 +23,7 @@ $kpiConfigs = $biGeneralDataProvider->getKPIConfigs();
                 <div class="graph-box">
                     <?php if (in_array('orders_today', $kpiConfigs)): ?>
                         <div class="tooltip-container">
-                            <span class="tooltip-text">
+                            <span class="tooltip-text-top">
                                 <?= __('Indicates how many orders were placed today. Essential for monitoring daily e-commerce activity.') ?>
                             </span>
                             <div class="info-box">
@@ -39,7 +39,7 @@ $kpiConfigs = $biGeneralDataProvider->getKPIConfigs();
 
                     <?php if (in_array('new_customers_today', $kpiConfigs)): ?>
                         <div class="tooltip-container">
-                            <span class="tooltip-text">
+                            <span class="tooltip-text-top">
                                 <?= __('Shows how many new customers registered today. Useful for assessing customer base growth.') ?>
                             </span>
                             <div class="info-box">
@@ -53,7 +53,7 @@ $kpiConfigs = $biGeneralDataProvider->getKPIConfigs();
 
                     <?php if (in_array('abandoned_carts', $kpiConfigs)): ?>
                         <div class="tooltip-container">
-                            <span class="tooltip-text">
+                            <span class="tooltip-text-top">
                                 <?= __('Number of carts that were created but did not turn into orders. Important for understanding possible hurdles in the purchasing process.') ?>
                             </span>
                             <div class="info-box">
