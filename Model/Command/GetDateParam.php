@@ -12,18 +12,14 @@ use Magento\Framework\App\RequestInterface;
 
 class GetDateParam
 {
-    /** @var RequestInterface */
-    private RequestInterface $request;
-
     /**
      * GetDateParam constructor.
      *
      * @param RequestInterface $request
      */
     public function __construct(
-        RequestInterface $request
+        private readonly RequestInterface $request
     ) {
-        $this->request = $request;
     }
 
     /**

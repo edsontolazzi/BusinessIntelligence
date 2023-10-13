@@ -12,18 +12,14 @@ use Tolazzi\BusinessIntelligence\Model\Command\Sales\GetOrderByYear;
 
 class OrderByYear
 {
-    /** @var GetOrderByYear */
-    private GetOrderByYear $getOrderByYear;
-
     /**
      * OrderByYear constructor.
      *
      * @param GetOrderByYear $getOrderByYear
      */
     public function __construct(
-        GetOrderByYear $getOrderByYear
+        private readonly GetOrderByYear $getOrderByYear
     ) {
-        $this->getOrderByYear = $getOrderByYear;
     }
 
     /**

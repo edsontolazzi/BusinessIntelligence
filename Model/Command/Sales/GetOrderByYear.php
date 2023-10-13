@@ -16,18 +16,14 @@ class GetOrderByYear
     public const SALES_TOTAL_VALUE_COLUMN = 'sales_total_value';
     public const SALES_NUMBER_COLUMN = 'sales_number';
 
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-
     /**
      * GetOrderByYear constructor.
      *
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

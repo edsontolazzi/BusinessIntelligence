@@ -16,15 +16,6 @@ use Tolazzi\BusinessIntelligence\Model\Provider\Config;
 
 class BiProductsDataProvider implements ArgumentInterface
 {
-    /** @var GetDateParam */
-    private GetDateParam $getDateParam;
-    /** @var GetTopSellingProductsQty */
-    private GetTopSellingProductsQty $getTopSellingProductsQty;
-    /** @var GetTopSellingProductsValue */
-    private GetTopSellingProductsValue $getTopSellingProductsValue;
-    /** @var Config */
-    private Config $config;
-
     /**
      * BiProductsDataProvider constructor.
      *
@@ -34,15 +25,11 @@ class BiProductsDataProvider implements ArgumentInterface
      * @param Config $config
      */
     public function __construct(
-        GetDateParam $getDateParam,
-        GetTopSellingProductsQty $getTopSellingProductsQty,
-        GetTopSellingProductsValue $getTopSellingProductsValue,
-        Config $config
+        private readonly GetDateParam $getDateParam,
+        private readonly GetTopSellingProductsQty $getTopSellingProductsQty,
+        private readonly GetTopSellingProductsValue $getTopSellingProductsValue,
+        private readonly Config $config
     ) {
-        $this->config = $config;
-        $this->getTopSellingProductsValue = $getTopSellingProductsValue;
-        $this->getTopSellingProductsQty = $getTopSellingProductsQty;
-        $this->getDateParam = $getDateParam;
     }
 
     /**

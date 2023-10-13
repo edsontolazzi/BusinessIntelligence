@@ -17,11 +17,6 @@ class GetOrdersToday
     public const TOTAL_ORDERS_COLUMN = 'total_orders';
     public const TOTAL_VALUE_COLUMN = 'total_value';
 
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-    /** @var DateUtil */
-    private DateUtil $dateUtil;
-
     /**
      * GetLastOrders constructor.
      *
@@ -29,11 +24,9 @@ class GetOrdersToday
      * @param DateUtil $dateUtil
      */
     public function __construct(
-        ResourceConnection $resourceConnection,
-        DateUtil $dateUtil
+        private readonly ResourceConnection $resourceConnection,
+        private readonly DateUtil $dateUtil
     ) {
-        $this->dateUtil = $dateUtil;
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

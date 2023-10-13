@@ -23,29 +23,6 @@ use Tolazzi\BusinessIntelligence\Service\GraphData\Sales\OrderByYear;
 
 class BiSalesDataProvider implements ArgumentInterface
 {
-    /** @var GetDateParam */
-    private GetDateParam $getDateParam;
-    /** @var Json */
-    private Json $jsonSerializer;
-    /** @var GetTotalInvoiced */
-    private GetTotalInvoiced $getTotalInvoiced;
-    /** @var GetNumberOfInvoicedOrders */
-    private GetNumberOfInvoicedOrders $getNumberOfInvoicedOrders;
-    /** @var GetNumberOfOrders */
-    private GetNumberOfOrders $getNumberOfOrders;
-    /** @var OrderByState */
-    private OrderByState $orderByState;
-    /** @var OrderByMonth */
-    private OrderByMonth $orderByMonth;
-    /** @var GetValueAndNumberOfNotPaidInvoices */
-    private GetValueAndNumberOfNotPaidInvoices $getValueAndNumberOfNotPaidInvoices;
-    /** @var GetTotalOrdered */
-    private GetTotalOrdered $getTotalOrdered;
-    /** @var OrderByYear */
-    private OrderByYear $orderByYear;
-    /** @var Config */
-    private Config $config;
-
     /**
      * BiSalesDataProvider constructor.
      *
@@ -62,29 +39,18 @@ class BiSalesDataProvider implements ArgumentInterface
      * @param Config $config
      */
     public function __construct(
-        GetDateParam $getDateParam,
-        Json $jsonSerializer,
-        GetTotalInvoiced $getTotalInvoiced,
-        GetNumberOfInvoicedOrders $getNumberOfInvoicedOrders,
-        GetNumberOfOrders $getNumberOfOrders,
-        OrderByState $orderByState,
-        OrderByMonth $orderByMonth,
-        GetValueAndNumberOfNotPaidInvoices $getValueAndNumberOfNotPaidInvoices,
-        GetTotalOrdered $getTotalOrdered,
-        OrderByYear $orderByYear,
-        Config $config
+        private readonly GetDateParam $getDateParam,
+        private readonly Json $jsonSerializer,
+        private readonly GetTotalInvoiced $getTotalInvoiced,
+        private readonly GetNumberOfInvoicedOrders $getNumberOfInvoicedOrders,
+        private readonly GetNumberOfOrders $getNumberOfOrders,
+        private readonly OrderByState $orderByState,
+        private readonly OrderByMonth $orderByMonth,
+        private readonly GetValueAndNumberOfNotPaidInvoices $getValueAndNumberOfNotPaidInvoices,
+        private readonly GetTotalOrdered $getTotalOrdered,
+        private readonly OrderByYear $orderByYear,
+        private readonly Config $config
     ) {
-        $this->config = $config;
-        $this->orderByYear = $orderByYear;
-        $this->getTotalOrdered = $getTotalOrdered;
-        $this->getValueAndNumberOfNotPaidInvoices = $getValueAndNumberOfNotPaidInvoices;
-        $this->orderByMonth = $orderByMonth;
-        $this->orderByState = $orderByState;
-        $this->getNumberOfOrders = $getNumberOfOrders;
-        $this->getNumberOfInvoicedOrders = $getNumberOfInvoicedOrders;
-        $this->getTotalInvoiced = $getTotalInvoiced;
-        $this->jsonSerializer = $jsonSerializer;
-        $this->getDateParam = $getDateParam;
     }
 
     /**

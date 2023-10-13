@@ -15,18 +15,14 @@ class GetValueAndNumberOfNotPaidInvoices
     public const NUMBER_ORDERS_COLUMN = 'number_orders_not_paid';
     public const VALUE_ORDERS_COLUMN = 'value_orders_not_paid';
 
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-
     /**
      * GetOrderByMonth constructor.
      *
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

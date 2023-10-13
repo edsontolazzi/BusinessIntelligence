@@ -25,18 +25,14 @@ class Config
     public const TOP_INFORMATIONS_FIELD = 'top_informations';
     public const KPI_FIELD = 'kpi';
 
-    /** @var ScopeConfigInterface */
-    private ScopeConfigInterface $scopeConfig;
-
     /**
      * Config constructor.
      *
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig
+        private readonly ScopeConfigInterface $scopeConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
     }
 
     /**

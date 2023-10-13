@@ -12,18 +12,14 @@ use Tolazzi\BusinessIntelligence\Model\Command\General\GetMostPopularitySearchTe
 
 class MostPopularitySearchTerms
 {
-    /** @var GetMostPopularitySearchTerms */
-    private GetMostPopularitySearchTerms $getMostPopularitySearchTerms;
-
     /**
      * MostPopularitySearchTerms constructor.
      *
      * @param GetMostPopularitySearchTerms $getMostPopularitySearchTerms
      */
     public function __construct(
-        GetMostPopularitySearchTerms $getMostPopularitySearchTerms
+        private readonly GetMostPopularitySearchTerms $getMostPopularitySearchTerms
     ) {
-        $this->getMostPopularitySearchTerms = $getMostPopularitySearchTerms;
     }
 
     /**
