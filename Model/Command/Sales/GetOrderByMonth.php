@@ -17,18 +17,14 @@ class GetOrderByMonth
     public const SALES_NUMBER_COLUMN = 'sales_number';
     public const SALES_TOTAL_VALUE_COLUMN = 'sales_total_value';
 
-    /** @var ResourceConnection */
-    private ResourceConnection $resourceConnection;
-
     /**
      * GetOrderByMonth constructor.
      *
      * @param ResourceConnection $resourceConnection
      */
     public function __construct(
-        ResourceConnection $resourceConnection
+        private readonly ResourceConnection $resourceConnection
     ) {
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

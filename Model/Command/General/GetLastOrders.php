@@ -13,9 +13,6 @@ use Tolazzi\BusinessIntelligence\Model\Provider\Config;
 
 class GetLastOrders
 {
-    private ResourceConnection $resourceConnection;
-    private Config $config;
-
     /**
      * GetLastOrders constructor.
      *
@@ -23,11 +20,9 @@ class GetLastOrders
      * @param Config $config
      */
     public function __construct(
-        ResourceConnection $resourceConnection,
-        Config $config
+        private readonly ResourceConnection $resourceConnection,
+        private readonly Config $config
     ) {
-        $this->config = $config;
-        $this->resourceConnection = $resourceConnection;
     }
 
     /**

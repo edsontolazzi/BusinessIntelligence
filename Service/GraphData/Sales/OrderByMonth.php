@@ -27,18 +27,14 @@ class OrderByMonth
         12 => 'December'
     ];
 
-    /** @var GetOrderByMonth */
-    private GetOrderByMonth $getOrderByMonth;
-
     /**
      * OrderByMonth constructor.
      *
      * @param GetOrderByMonth $getOrderByMonth
      */
     public function __construct(
-        GetOrderByMonth $getOrderByMonth
+        private readonly GetOrderByMonth $getOrderByMonth
     ) {
-        $this->getOrderByMonth = $getOrderByMonth;
     }
 
     /**

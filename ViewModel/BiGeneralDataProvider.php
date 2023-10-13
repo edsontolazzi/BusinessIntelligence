@@ -23,27 +23,6 @@ use Tolazzi\BusinessIntelligence\Service\GraphData\General\MostPopularitySearchT
 
 class BiGeneralDataProvider implements ArgumentInterface
 {
-    /** @var Json */
-    private Json $jsonSerializer;
-    /** @var GetLastOrders */
-    private GetLastOrders $getLastOrders;
-    /** @var Config */
-    private Config $config;
-    /** @var GetLastCustomers */
-    private GetLastCustomers $getLastCustomers;
-    /** @var MostPopularitySearchTerms */
-    private MostPopularitySearchTerms $mostPopularitySearchTerms;
-    /** @var GetOrdersToday */
-    private GetOrdersToday $getOrdersToday;
-    /** @var GetNewCustomersToday */
-    private GetNewCustomersToday $getNewCustomersToday;
-    /** @var GetAbandonedCarts */
-    private GetAbandonedCarts $getAbandonedCarts;
-    /** @var GetTopBiggestOrders */
-    private GetTopBiggestOrders $getTopBiggestOrders;
-    /** @var GetTopBuyers */
-    private GetTopBuyers $getTopBuyers;
-
     /**
      * BiGeneralDataProvider constructor.
      *
@@ -59,27 +38,17 @@ class BiGeneralDataProvider implements ArgumentInterface
      * @param Config $config
      */
     public function __construct(
-        Json $jsonSerializer,
-        GetLastOrders $getLastOrders,
-        GetLastCustomers $getLastCustomers,
-        MostPopularitySearchTerms $mostPopularitySearchTerms,
-        GetOrdersToday $getOrdersToday,
-        GetNewCustomersToday $getNewCustomersToday,
-        GetAbandonedCarts $getAbandonedCarts,
-        GetTopBiggestOrders $getTopBiggestOrders,
-        GetTopBuyers $getTopBuyers,
-        Config $config
+        private readonly Json $jsonSerializer,
+        private readonly GetLastOrders $getLastOrders,
+        private readonly GetLastCustomers $getLastCustomers,
+        private readonly MostPopularitySearchTerms $mostPopularitySearchTerms,
+        private readonly GetOrdersToday $getOrdersToday,
+        private readonly GetNewCustomersToday $getNewCustomersToday,
+        private readonly GetAbandonedCarts $getAbandonedCarts,
+        private readonly GetTopBiggestOrders $getTopBiggestOrders,
+        private readonly GetTopBuyers $getTopBuyers,
+        private readonly Config $config
     ) {
-        $this->getTopBuyers = $getTopBuyers;
-        $this->getTopBiggestOrders = $getTopBiggestOrders;
-        $this->getAbandonedCarts = $getAbandonedCarts;
-        $this->getNewCustomersToday = $getNewCustomersToday;
-        $this->getOrdersToday = $getOrdersToday;
-        $this->mostPopularitySearchTerms = $mostPopularitySearchTerms;
-        $this->getLastCustomers = $getLastCustomers;
-        $this->config = $config;
-        $this->getLastOrders = $getLastOrders;
-        $this->jsonSerializer = $jsonSerializer;
     }
 
     /**
