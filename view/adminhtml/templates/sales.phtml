@@ -89,7 +89,7 @@ $kpiConfigs = $biSalesDataProvider->getKPIConfigs();
 
             <?php if (in_array('invoiced_orders', $kpiConfigs) || in_array('orders', $kpiConfigs) || in_array('invoices_not_paid', $kpiConfigs)): ?>
                 <div class="graph-box">
-                    <?php if (in_array('average_ordered_ticket', $kpiConfigs)): ?>
+                    <?php if (in_array('invoiced_orders', $kpiConfigs)): ?>
                         <div class="tooltip-container">
                             <span class="tooltip-text">
                                 <?= __('Total number of orders that were invoiced. Important for tracking the efficiency of the invoicing process.') ?>
